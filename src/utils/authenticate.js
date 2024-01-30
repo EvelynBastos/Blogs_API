@@ -4,12 +4,12 @@ const jwtSecret = process.env.JWT_SECRET || 'secret';
 
 const authToken = (user) => {
   const jwtConfig = {
-    expiresIn: '7d',
+    expiresIn: '2d',
     algorithm: 'HS256',
   };
 
   const token = jwt.sign(
-    { username: user.email },
+    user,
     jwtSecret,
     jwtConfig,
   );
