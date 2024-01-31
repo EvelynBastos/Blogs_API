@@ -1,22 +1,19 @@
 const { User } = require('../models');
-const authToken = require('../utils/authenticate');
-const schema = require('../validations/shemas');
+const auth = require('../utils/authenticate');
+const schema = require('../middlewares/validationInputValues');
 
-const login = async (credentials) => {
-  const error = schema.login.validate(credentials);
+const login = async (credentialUser) => {
+  const error = schema.validateInput(credentialUser);
   if (error) return { status: 'BAD_REQUEST', data: { message: error.message } };
 
-  const user = await User.findOne({ where: { email: credentials.email } });
+  const user = await User.findOne({ where: { email: credentialUser.email } });
 
-  if (!user || user.password !== credentials.password) {
+  if (!user || user.password !== credentialUser.password) {
     return { status: 'BAD_REQUEST', data: { message: 'Invalid fields' } };
   }
 
   const { email } = user;
-  const token = authToken({ email });
-  if (!token) {
-    return;
-  }
+  const token = auth.authToken({ email });
   return { status: 'SUCCESS', data: { token } };
 };
 

@@ -4,17 +4,11 @@ const jwtSecret = process.env.JWT_SECRET || 'secret';
 
 const authToken = (user) => {
   const jwtConfig = {
-    expiresIn: '2d',
+    expiresIn: '1d',
     algorithm: 'HS256',
   };
 
-  const token = jwt.sign(
-    user,
-    jwtSecret,
-    jwtConfig,
-  );
-
-  return token;
+  return jwt.sign({ username: user.email }, jwtSecret, jwtConfig);
 };
 
 const verifyToken = (token) => {
