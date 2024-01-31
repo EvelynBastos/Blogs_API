@@ -7,6 +7,20 @@ const login = async (req, res) => {
   res.status(httpStatusMap(status)).json(data);
 };
 
+const createNewUser = async (req, res) => {
+  const { displayName, email, password, image } = req.body;
+
+  const { status, data } = await userService.createNewUser({ displayName, email, password, image });
+  res.status(httpStatusMap(status)).json(data);
+};
+
+const getAllUsers = async (req, res) => {
+  const { status, data } = await userService.getAllUsers();
+  res.status(httpStatusMap(status)).json(data);
+};
+
 module.exports = {
   login,
+  createNewUser,
+  getAllUsers,
 };
