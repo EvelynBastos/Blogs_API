@@ -7,7 +7,7 @@ const validateToken = async (req, res, next) => {
 
   try {
     const decoded = verifyToken(token);
-    req.user = { decoded };
+    req.user = decoded;
     next();
   } catch (error) {
     return res.status(401).json({ message: 'Expired or invalid token' });

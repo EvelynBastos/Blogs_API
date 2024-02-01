@@ -4,6 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
+      autoIncrement: true,
     },
     title: DataTypes.STRING,
     content: DataTypes.STRING,
@@ -16,16 +17,10 @@ module.exports = (sequelize, DataTypes) => {
     underscored: true,
   });
   
-  BlogPosts.associate = ({ User, Category, PostCategory }) => {
-    BlogPosts.belongsToMany(Category, {
-        through: PostCategory,
-          foreignKey: 'postId',
-          as: 'postCategories',
-          otherKey: 'categoryId',
-      });
+  BlogPosts.associate = ({ User }) => {
     BlogPosts.belongsTo(User, { 
-        foreignKey: 'userId', 
-        as: 'user', 
+        foreignKey: "userId", 
+        as: "user", 
     });
   };
 
