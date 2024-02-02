@@ -36,7 +36,23 @@ const getAllPost = async (email) => {
   return { status: 'SUCCESS', data: posts };
 };
 
+const getPostById = async (id) => {
+  const post = await BlogPost.findOne({
+    where: { id },
+    include: [
+      { model: User, as: 'user', attributes: { exclude: ['password'] } },
+      { model: Category,
+        as: 'categories',
+        attributes: { exclude: ['PostCategory'] },
+        through: { attributes: [] } },
+    ],
+  });
+  if (!post) return { status: 'NOT_FOUND', data: { message: 'Post does not exist' } };
+  return { status: 'SUCCESS', data: post };
+};
+
 module.exports = {
   getAllPost,
   createPost,
+  getPostById,
 };
