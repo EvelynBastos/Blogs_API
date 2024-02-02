@@ -5,19 +5,23 @@ const createPost = async (req, res) => {
   const { title, content, categoryIds } = req.body;
   const { email } = req.user;
 
-  const { status, data } = await blogPostService.createPost({
-    title, content, categoryIds, email,
-  });
-  res.status(mapStatusHTTP(status)).json(data);
+  try {
+    const { status, data } = await blogPostService.createPost({
+      title, content, categoryIds, email,
+    });
+    res.status(mapStatusHTTP(status)).json(data);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
 };
 
-const getAllPosts = async (req, res) => {
+const getAllPost = async (req, res) => {
   const { email } = req.user;
-  const { status, data } = await blogPostService.getAllPosts(email);
+  const { status, data } = await blogPostService.getAllPost(email);
   res.status(mapStatusHTTP(status)).json(data);
 };
 
 module.exports = {
   createPost,
-  getAllPosts,
+  getAllPost,
 };

@@ -9,11 +9,12 @@ module.exports = (sequelize, DataTypes) => {
     title: DataTypes.STRING,
     content: DataTypes.STRING,
     userId: DataTypes.INTEGER,
-    published: DataTypes.DATE,
-    updated: DataTypes.DATE,
-  }, 
-  {
-    timestamps: false,
+    published:  DataTypes.DATE,
+    updated: DataTypes.DATE, 
+  }, {
+    createdAt: "published",
+    updatedAt: "updated",
+    timestamps: true,
     underscored: true,
   });
   

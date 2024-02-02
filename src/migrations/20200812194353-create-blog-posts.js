@@ -5,7 +5,7 @@ module.exports = {
                 type: Sequelize.INTEGER,
                 autoIncrement: true,
                 allowNull: false,
-                primaryKey: true
+                primaryKey: true,
             },
             title: {
                 type: Sequelize.STRING,
@@ -15,23 +15,24 @@ module.exports = {
                 type: Sequelize.STRING,
                 allowNull: false,
             },
-            user_id: {
+            userId: {
                 type: Sequelize.INTEGER,
                 allowNull: false,
                 field: 'user_id',
+                onDelete: 'CASCADE',
+                onUpdate: 'CASCADE',
                 references: {
                     model: 'users',
                     key: 'id',
                 },
-                onUpdate: 'CASCADE',
             },
             published: {
                 type: Sequelize.DATE,
-                allowNull: false,
+                defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
             },
             updated: {
                 type: Sequelize.DATE,
-                allowNull: false,
+                defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
             },
         });
     },
