@@ -6,4 +6,6 @@ const associateCategoryPost = async (postId, categoryIds, transaction) => {
   await PostCategory.bulkCreate(mapOfPostCategory, transaction);
 };
 
-module.exports = associateCategoryPost;
+module.exports = {
+  associateCategoryPost,
+};
