@@ -2,6 +2,7 @@ const { validateLoginSchema } = require('./validateLogin');
 const { validateUserSchema } = require('./validateUser');
 const { validateCategorySchema } = require('./validateCategory');
 const { validateBlogPostSchema } = require('./validateBlogPost');
+const { validateUpdateBlogPostSchema } = require('./validateBlogPost');
 
 const validateInput = (objectKey) => {
   const { error } = validateLoginSchema.validate(objectKey);
@@ -25,9 +26,15 @@ const newBlogPostValidate = (objectKey) => {
   if (error) return { status: 'BAD_REQUEST', message: error.message };
 };
 
+const updateBlogPostValidate = (objectKey) => {
+  const { error } = validateUpdateBlogPostSchema.validate(objectKey);
+  if (error) return { status: 'BAD_REQUEST', message: error.message };
+};
+
 module.exports = {
   validateInput,
   newUserValidate,
   newCategoryValidate,
   newBlogPostValidate,
+  updateBlogPostValidate,
 };

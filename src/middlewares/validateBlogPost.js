@@ -15,6 +15,16 @@ const validateBlogPostSchema = Joi.object({
     'array.min': 'one or more "categoryIds" not found',
   });
 
+const validateUpdateBlogPostSchema = Joi.object({
+  title: Joi.string().min(1).required(),
+  content: Joi.string().min(1).required(),
+})
+  .messages({
+    'string.empty': errorMessage,
+    'any.required': errorMessage,
+  });
+
 module.exports = {
   validateBlogPostSchema,
+  validateUpdateBlogPostSchema,
 };
