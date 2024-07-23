@@ -1,4 +1,4 @@
-# BLogs API
+# Blogs API
 
 <details>
   <summary><strong>👨‍💻 O que foi desenvolvido</strong></summary>
