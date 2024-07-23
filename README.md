@@ -67,6 +67,23 @@
   <br/>
 </details>
 
+<details>
+
+<summary><strong> 🛠️ Instalando o projeto </strong></summary><br />
+
+  1. Clone o repositório
+
+- Use o comando: `git clone git@github.com:EvelynBastos/Blogs_API.git`
+- Entre na pasta do repositório que você acabou de clonar:
+    - `cd <diretório-do-projeto>`
+
+2. Instale as dependências
+
+    - npm install
+
+</details>
+
+
 ![ApiDeBlogs](https://github.com/user-attachments/assets/e96497fc-9f8c-4788-9c9d-5af8f73b2a21)
 
 
